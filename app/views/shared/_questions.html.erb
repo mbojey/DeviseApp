@@ -1,0 +1,29 @@
+<h3>Question</h3>
+	<%=questions.qtext.html_safe%>
+<div class = "row">
+	<div class = "col-sm-2 col-sm-offset-1">
+		<h3>Answer1</h3>
+		<%=questions.a1text.html_safe%>
+	</div>
+	<div class = "col-sm-2">
+		<h3>Answer2</h3>
+		<%=questions.a2text.html_safe%>
+	</div>
+	<div class = "col-sm-2">
+		<h3>Answer3</h3>
+		<%=questions.a3text.html_safe%>
+	</div>
+	<div class = "col-sm-2">
+		<h3>Answer4</h3>
+		<%=questions.a4text.html_safe%>
+	</div>
+	<div class = "col-sm-2">
+		<h3>Answer5</h3>
+		<%=questions.a5text.html_safe%>
+	</div>
+</div>
+<%if !questions.submitted %>
+	Submit this question
+<% else %>
+	<%=questions.grade %>
+<% end %>

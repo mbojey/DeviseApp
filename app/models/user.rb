@@ -1,12 +1,6 @@
 class User < ActiveRecord::Base
 
-        has_many  :decks, dependent: :destroy
-        has_many  :deckratings, dependent: :destroy
-        has_many  :recent_decks, dependent: :destroy
-        has_many  :saved_decks, dependent: :destroy
-        has_many :flagged_decks, dependent: :destroy
-
-
+  has_many :questions
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -14,8 +8,9 @@ class User < ActiveRecord::Base
  
   validates :username, uniqueness: true
 
-  validates :username, :decks_made,  presence:  true
-  validates_inclusion_of  :admin, :in => [true, false]
+  validates :username,  presence:  true
+  validates_inclusion_of  :instructor, :in => [true, false]
+  validates_inclusion_of  :assistant, :in => [true, false]
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence:   true,

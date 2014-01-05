@@ -1,0 +1,12 @@
+<% if user_signed_in? %>
+	</br>
+	</br>
+	</br>
+    <div class="row", style = "border-bottom: 3px solid black">
+  		<%= link_to'Create a Question', '/questions/new', class: "btn btn-medium btn-success"  %>  
+   	</div>
+	
+	<% if @questions.any? %>
+		<%= render partial: 'shared/questions', collection: @questions %>
+	<% end %>
+<% end %>
