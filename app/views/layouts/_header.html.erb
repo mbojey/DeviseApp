@@ -5,6 +5,9 @@
       <nav>
         <ul class="nav pull-right">
           <% if user_signed_in? %>
+            <% if @user.assistant %>
+              <li><%= link_to "Mark Questions", '/find_questions', id: "brand"%></li>
+            <% end %>
             <li><%= link_to "Your Questions", '/your_questions', id: "brand"%></li>
             <li><%= link_to "Account", edit_user_registration_path, id: "brand" %></li> 
             <li><%= link_to'Sign Out', destroy_user_session_path, :method => :delete, id:"brand" %>  </li>     

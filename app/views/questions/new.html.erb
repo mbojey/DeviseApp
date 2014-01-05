@@ -21,29 +21,27 @@ CKEDITOR.replace( 'editor1',
     </div>
   </div>
   <div class = "row">
-    <div class = "col-sm-1">
-      <%= f.input :answer, collection: 1..5 %>
-    </div>
-    <div class = "col-sm-3">
-      <%= f.input :topic_id, collection: @topic %>
-    </div>
-    <div class = "col-sm-6 col-sm-offset-1">
+    <div class = "col-sm-6">
       <%= f.input :a2text, :label => "2)", :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'mini'}, :value => "" } %>
     </div>
-  </div>
-  <div class = "row">
-    <div class = "col-sm-6 col-sm-offset-6">
+    <div class = "col-sm-6">
       <%= f.input :a3text, :label => "3)", :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'mini'}, :value => "" } %>
     </div>
   </div>
   <div class = "row">
-    <div class = "col-sm-6 col-sm-offset-6">
+    <div class = "col-sm-6">
       <%= f.input :a4text, :label => "4)", :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'mini'}, :value => "" } %>
+    </div>
+     <div class = "col-sm-6">
+      <%= f.input :a5text, :label => "5)", :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'mini'}, :value => "" } %>
     </div>
   </div>
   <div class = "row">
-    <div class = "col-sm-6 col-sm-offset-6">
-      <%= f.input :a5text, :label => "5)", :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'mini'}, :value => "" } %>
+    <div class = "col-sm-1">
+      <%= f.input :answer, collection: 1..5 %>
+    </div>
+    <div class = "col-sm-4">
+      <%= f.input :topic_id, collection: @topic %>
     </div>
   </div>
   <br/>

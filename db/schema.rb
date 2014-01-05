@@ -51,11 +51,19 @@ ActiveRecord::Schema.define(version: 20131008164900) do
         t.integer "topic_id",               default: 0,     null: false
         t.boolean "submitted",              default: false, null: false
         t.string  "grade",                  default: "",    null: false
+        t.boolean "visible",                default: true,  null: false
+        t.boolean "exam",                   default: false, null: false
+        t.string  "lab"
   end
 
   create_table "topics", force: true do |t|
         t.string "name"
         t.integer "topic_id",                default: 0,     null: false
+  end
+
+  create_table "results", force: true do |t|
+        t.string "name"
+        t.string "lab"
   end
 
 end

@@ -1,0 +1,14 @@
+</br>
+</br>
+</br>
+<%= simple_form_for @result, :url => { :action => "create" } do |f| %>
+	<div class = "row">
+		<div class = "col-sm-4">
+      		<%= f.input :name, collection: @topic %>
+    	</div>
+    	<div class = "col-sm-4">
+      		<%= f.input :lab, collection: @lab %>
+    	</div>
+    </div>
+    <%= f.submit "Find Questions", class: "btn btn-medium btn-success" %>
+<% end %>
