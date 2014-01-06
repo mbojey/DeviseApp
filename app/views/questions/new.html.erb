@@ -1,12 +1,4 @@
-<script>
 
-CKEDITOR.replace( 'editor1',
-    {
-        customConfig : '/lib/cke_config.js'
-    });
-
-
-</script>
 </br></br></br>
 
 <%= simple_form_for @question, :url => { :action => "create" } do |f| %>
@@ -14,26 +6,26 @@ CKEDITOR.replace( 'editor1',
   <p> Please fill in all fields</p>
   <div class = "row">
     <div class = "col-sm-6">
-      <%= f.input :qtext, :label => "Question", :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'mini'}, :value => "" }%>
+      <%= f.input :qtext, :label => "Question", :as => :ckeditor%>
     </div>
     <div class = "col-sm-6">
-      <%= f.input :a1text, :label => "1)", :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'mini'}, :value => "" } %>
-    </div>
-  </div>
-  <div class = "row">
-    <div class = "col-sm-6">
-      <%= f.input :a2text, :label => "2)", :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'mini'}, :value => "" } %>
-    </div>
-    <div class = "col-sm-6">
-      <%= f.input :a3text, :label => "3)", :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'mini'}, :value => "" } %>
+      <%= f.input :a1text, :label => "1)", :as => :ckeditor%>
     </div>
   </div>
   <div class = "row">
     <div class = "col-sm-6">
-      <%= f.input :a4text, :label => "4)", :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'mini'}, :value => "" } %>
+      <%= f.input :a2text, :label => "2)", :as => :ckeditor%>
+    </div>
+    <div class = "col-sm-6">
+      <%= f.input :a3text, :label => "3)", :as => :ckeditor%>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col-sm-6">
+      <%= f.input :a4text, :label => "4)", :as => :ckeditor%>
     </div>
      <div class = "col-sm-6">
-      <%= f.input :a5text, :label => "5)", :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'mini'}, :value => "" } %>
+      <%= f.input :a5text, :label => "5)", :as => :ckeditor%>
     </div>
   </div>
   <div class = "row">

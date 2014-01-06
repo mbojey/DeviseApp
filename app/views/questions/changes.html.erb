@@ -3,7 +3,7 @@
 <br/>
 <%= simple_form_for @question, :url => { :action => "comment" } do |f| %>
 
-	<%= f.input :grade, :label => "Comment", :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'mini'}, :value => "" }%>
+	<%= f.input :grade, :label => "Comment", :as => :ckeditor%>
 	<%= f.hidden_field :question_id, :value => @question.question_id %>
 
 	<%= f.submit "Give Feedback", class: "btn btn-medium btn-success" %>
