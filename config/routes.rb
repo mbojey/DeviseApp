@@ -23,6 +23,7 @@ match '/search', to: 'search#create', via: 'get'
 match '/remove', to: 'topics#remove', via: 'get'
 match '/study/', to: 'practices#use', via: 'get'
 match '/answer', to: 'practices#submit', via: 'post'
+mount Ckeditor::Engine => '/ckeditor'
 
 
 end
