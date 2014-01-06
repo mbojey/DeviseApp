@@ -83,7 +83,8 @@ First_Website::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.assets.precompile += ['static_pages.css']
-
-  config.action_mailer.default_url_options = { :host => 'scflashcards.herokuapp.com'}   #test fix
+  config.serve_static_assets = true
+  config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+  config.assets.compile = false
 
 end
