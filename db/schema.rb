@@ -66,4 +66,25 @@ ActiveRecord::Schema.define(version: 20131008164900) do
         t.string "lab"
   end
 
+  create_table "practices", force: true do |t|
+        t.integer "game_id",                default: 0,     null: false
+        t.integer "practice_id",            default: 0,     null: false
+        t.integer "user_id",                default: 0,     null: false
+        t.integer "question_id",            default: 0,     null: false
+        t.integer "topic_id",               default: 0,     null: false
+        t.integer "attempts",               default: 0,     null: false
+        t.integer "answer"
+        t.boolean "correct",                default: false, null: false
+  end
+
+  create_table "games", force: true do |t|
+        t.integer "game_id",                default: 0,     null: false
+        t.integer "user_id",                default: 0,     null: false
+        t.integer "topic_id",               default: 0,     null: false
+        t.integer "number",                 default: 0,     null: false
+        t.integer "correct",                default: 0,     null: false
+        t.string "name"
+
+  end
+
 end

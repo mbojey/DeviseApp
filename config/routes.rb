@@ -3,6 +3,7 @@ devise_for :users
 resource :questions
 resource :search, :controller => :search
 resource :topics
+resource :practices
 
  
 root to: 'static_pages#home'
@@ -20,6 +21,8 @@ match '/changes', to: 'questions#changes', via: 'get'
 match '/comment', to: 'questions#comment', via: 'patch'
 match '/search', to: 'search#create', via: 'get'
 match '/remove', to: 'topics#remove', via: 'get'
+match '/study/', to: 'practices#use', via: 'get'
+match '/answer', to: 'practices#submit', via: 'post'
 
 
 end

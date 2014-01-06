@@ -10,13 +10,13 @@
   </head>
   <body>
     <%= render 'layouts/header' %>
-    
-    <div class="container-fluid" style = "padding-left:6em;padding-right:6em;">
-      <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
-      <% end %>
-      <div>
-     </div>
+    <div class="container">
+    </br>
+  </br>
+</br>
+    <% flash.each do |key, value| %>
+        <%= content_tag(:div, value, class: "alert alert-#{key}") %>
+    <% end %>
       <%= yield %>
       <%= render 'layouts/footer' %>
     </div>

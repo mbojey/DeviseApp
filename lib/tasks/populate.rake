@@ -12,5 +12,18 @@ namespace :db do
   	User.create!(fname: "Matt", lname: "Bojey", email: "test3@test.ca", username: "proftest", 
   		password: "testtest", password_confirmation: "testtest", lab: "L05",
   		studentnumber: "0", user_id: 0, instructor: true)
+    Question.create(qtext:"This is the question text", a1text: "Wrong", a2text: "Wrong", a3text: "Wrong",
+      a4text: "Correct", a5text: "Wrong", answer: 4, user_id: 1, topic_id: 1, submitted: true)
+    Question.create(qtext:"This is the second question text", a1text: "Wrong", a2text: "Wrong", a3text: "Wrong",
+      a4text: "Correct", a5text: "Wrong", answer: 4, user_id: 1, topic_id: 1, submitted: true)
+    Question.create(qtext:"This is the third question text", a1text: "Wrong", a2text: "Wrong", a3text: "Wrong",
+      a4text: "Correct", a5text: "Wrong", answer: 4, user_id: 1, topic_id: 1, submitted: true)
+    Question.create(qtext:"This is the fourth question text", a1text: "Wrong", a2text: "Wrong", a3text: "Wrong",
+      a4text: "Correct", a5text: "Wrong", answer: 4, user_id: 1, topic_id: 1, submitted: true)
+    Question.create(qtext:"This is the fifth question text", a1text: "Wrong", a2text: "Wrong", a3text: "Wrong",
+      a4text: "Correct", a5text: "Wrong", answer: 4, user_id: 1, topic_id: 1, submitted: true)
+    Question.create(qtext:"This is the sixth question text", a1text: "Wrong", a2text: "Wrong", a3text: "Wrong",
+      a4text: "Correct", a5text: "Wrong", answer: 4, user_id: 1, topic_id: 1, submitted: true)
+
   end
 end
