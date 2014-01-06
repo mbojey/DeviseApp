@@ -27,7 +27,7 @@ module First_Website
     
     config.assets.initialize_on_precompile = false
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
-
+    config.assets.precompile += Ckeditor.assets
 
     
 
