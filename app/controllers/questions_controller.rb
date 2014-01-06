@@ -3,16 +3,24 @@ class QuestionsController < ApplicationController
 
   def correct
     @user = current_user
-    @question = Question.find_by(id: params[:id])
-    @question.update_attribute(:grade, "Correct")
-    @questions = Question.where(:topic_id => @question.topic_id, :lab => @question.lab)
+    if @user.assistant || @user.instructor
+      @question = Question.find_by(id: params[:id])
+      @question.update_attribute(:grade, "Correct")
+      @questions = Question.where(:topic_id => @question.topic_id, :lab => @question.lab)
+    else
+      @questions = nil
+    end
   end
 
   def incorrect
     @user = current_user
-    @question = Question.find_by(id: params[:id])
-    @question.update_attribute(:grade, "Incorrect")
-    @questions = Question.where(:topic_id => @question.topic_id, :lab => @question.lab)
+    if @user.assistant || @user.instructor
+      @question = Question.find_by(id: params[:id])
+      @question.update_attribute(:grade, "Incorrect")
+      @questions = Question.where(:topic_id => @question.topic_id, :lab => @question.lab)
+    else
+      @questions = nil
+    end
   end
 
   def changes
@@ -22,14 +30,45 @@ class QuestionsController < ApplicationController
 
   def comment
     @user = current_user
-    @question = Question.find_by(id_params)
-    @question.update_attributes(grade_params)
-    @questions = Question.where(:topic_id => @question.topic_id, :lab => @question.lab)
+    if @user.assistant || @user.instructor
+      @question = Question.find_by(id_params)
+      @question.update_attributes(grade_params)
+      @questions = Question.where(:topic_id => @question.topic_id, :lab => @question.lab)
+    else
+      @questions = nil
+    end
   end
 
   def your_questions
     @user = current_user
     @questions = Question.where(user_id: current_user.user_id)
+  end
+
+  def flag_questions
+    @user = current_user
+    if @user.instructor
+      @questions = Question.where(submitted: true)
+    else
+      @questions = nil
+    end
+  end
+
+  def flag
+    @user = current_user
+    if @user.instructor
+      @question = Question.find_by(id: params[:id])
+      @question.update_attribute(:exam, true)
+    end
+    redirect_to "/flag_questions"
+  end
+
+   def unflag
+    @user = current_user
+    if @user.instructor
+      @question = Question.find_by(id: params[:id])
+      @question.update_attribute(:exam, false)
+    end
+    redirect_to "/flag_questions"
   end
 
   def submit
