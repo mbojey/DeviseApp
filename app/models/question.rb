@@ -3,7 +3,7 @@ class Question < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :topic
 
-	validates :qtext, :a1text, :a2text, :a3text, :a4text, :answer, presence: true
+	validates :qtext, :a1text, :a2text, :a3text, :a4text, :answer, :topic, presence: true
 
 	after_create :do_setID
   

@@ -89,12 +89,26 @@ class QuestionsController < ApplicationController
   def edit
     @user = current_user
     @question = Question.find(params[:id])
+    @topic = Topic.all
+    @answer = ['a', 'b', 'c', 'd', 'e']
   end
 
   def update
     @user = current_user
     @question = Question.find(params[:id])
     @question.update_attributes(question_params)
+    @answer = answer_params.to_s
+      if @answer[12, @answer.length - 14] == "a"
+        @question.answer = 1
+      elsif @answer[12, @answer.length - 14] == "b"
+        @question.answer = 2
+      elsif @answer[12, @answer.length - 14] == "c"
+        @question.answer = 3
+      elsif @answer[12, @answer.length - 14] == "d"
+        @question.answer = 4
+      elsif @answer[12, @answer.length - 14] == "e"
+        @question.answer = 5
+      end
     @question.save
     redirect_to "/your_questions"
   end
@@ -104,6 +118,7 @@ class QuestionsController < ApplicationController
     @userID = current_user.user_id
     @question = Question.new
     @topic = Topic.all
+    @answer = ['a', 'b', 'c', 'd', 'e']
   end
 
   def create
@@ -112,11 +127,24 @@ class QuestionsController < ApplicationController
 	    @question = Question.new(question_params)
 	    @question.user_id = current_user.user_id
       @question.lab = current_user.lab
-	    if @question.save
+      @answer = answer_params.to_s
+      if @answer[12, @answer.length - 14] == "a"
+        @question.answer = 1
+      elsif @answer[12, @answer.length - 14] == "b"
+        @question.answer = 2
+	    elsif @answer[12, @answer.length - 14] == "c"
+        @question.answer = 3
+      elsif @answer[12, @answer.length - 14] == "d"
+        @question.answer = 4
+      elsif @answer[12, @answer.length - 14] == "e"
+        @question.answer = 5
+      end
+      if @question.save
 	      flash[:success] = "Question created!"
-	      redirect_to root_path
+	      redirect_to "/your_questions"
 	    else
 	      flash[:error] = "Please fill in all required fields."
+        redirect_to "/questions/new"
 	    end
 	  end
   end
@@ -124,7 +152,11 @@ class QuestionsController < ApplicationController
    private
     
     def question_params
-      params.require(:question).permit(:qtext, :a1text, :a2text, :a3text, :a4text, :a5text, :answer, :topic_id)
+      params.require(:question).permit(:qtext, :a1text, :a2text, :a3text, :a4text, :a5text, :topic_id)
+    end
+
+    def answer_params
+      params.require(:question).permit(:answer)
     end
 
     def id_params

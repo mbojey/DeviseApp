@@ -1,39 +1,43 @@
 
-</br></br></br>
-
 <%= simple_form_for @question, :url => { :action => "create" } do |f| %>
 
-  <p> Please fill in all fields</p>
+  <p>All multiple choice questions must have one question and 5 possible responses. If you include Java code in your question, use the "Courier New" font to make it clear that it is code.</p>
   <div class = "row">
-    <div class = "col-sm-6">
-      <%= f.input :qtext, :label => "Question", :as => :ckeditor%>
-    </div>
-    <div class = "col-sm-6">
-      <%= f.input :a1text, :label => "1)", :as => :ckeditor%>
+    <div class = "col-sm-12">
+      <%= f.input :qtext, :label => "Question", :required => false, :as => :ckeditor%>
     </div>
   </div>
   <div class = "row">
-    <div class = "col-sm-6">
-      <%= f.input :a2text, :label => "2)", :as => :ckeditor%>
-    </div>
-    <div class = "col-sm-6">
-      <%= f.input :a3text, :label => "3)", :as => :ckeditor%>
+    <div class = "col-sm-12">
+      <%= f.input :a1text, :label => "a)", :required => false, :as => :ckeditor%>
     </div>
   </div>
   <div class = "row">
-    <div class = "col-sm-6">
-      <%= f.input :a4text, :label => "4)", :as => :ckeditor%>
-    </div>
-     <div class = "col-sm-6">
-      <%= f.input :a5text, :label => "5)", :as => :ckeditor%>
+    <div class = "col-sm-12">
+      <%= f.input :a2text, :label => "b)", :required => false, :as => :ckeditor%>
     </div>
   </div>
   <div class = "row">
-    <div class = "col-sm-1">
-      <%= f.input :answer, collection: 1..5 %>
+    <div class = "col-sm-12">
+      <%= f.input :a3text, :label => "c)", :required => false, :as => :ckeditor%>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col-sm-12">
+      <%= f.input :a4text, :label => "d)", :required => false, :as => :ckeditor%>
+    </div>
+  </div>
+  <div class = "row">
+     <div class = "col-sm-12">
+      <%= f.input :a5text, :label => "e)", :required => false, :as => :ckeditor%>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col-sm-3">
+      <%= f.input :answer, :label => "Select the Correct Answer", :required => false, collection: @answer %>
     </div>
     <div class = "col-sm-4">
-      <%= f.input :topic_id, collection: @topic %>
+      <%= f.input :topic_id, :label => "Select a Topic", :required => false,collection: @topic %>
     </div>
   </div>
   <br/>
