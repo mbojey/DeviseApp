@@ -17,7 +17,8 @@
 				<%= link_to "Edit", {controller: "questions", action: "edit", id: questions.id}, class: "btn btn-mdall btn-primary" %>
 			</div>
 		<% else %>
-			<% if !(questions.grade == "Review Pending") %>
+			<% if !(questions.grade == "Review Pending" || questions.grade == "Correct"
+			 		|| questions.grade == "Incorrect") %>
 				<div class = "col-md-1">
 					<%= link_to "Edit", {controller: "questions", action: "edit", id: questions.id}, class: "btn btn-mdall btn-primary" %>
 				</div>
