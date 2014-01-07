@@ -36,11 +36,11 @@
   <div><%= f.label "Last Name" %><br />
   <%= f.text_field :lname %></div>
 
-  <div><%= f.label "Lab Section" %><br />
-  <%= f.text_field :lab%></div>
+  <div><%= f.label "Lab Section e.g. L01" %><br />
+  <%= f.text_field :lab, :onkeyup => "CheckMaxlength(this);", :maxlength => 3%></div>
 
   <div><%= f.label "Student Number" %><br />
-  <%= f.text_field :studentnumber %></div>
+  <%= f.text_field :studentnumber, :onkeyup => "CheckMaxlength(this);", :maxlength => 8%></div>
 
  
  <!-- ADD EMPLOYER OPTION HERE and extra fields that come with it-->
