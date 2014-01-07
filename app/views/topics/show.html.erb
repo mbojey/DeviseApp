@@ -2,8 +2,6 @@
 </br>
 </br>
 <%= simple_form_for @topic, :url => { :action => "create" } do |f| %>
-
-  <p> Please fill in all fields</p>
   <div class = "row">
     <div class = "col-sm-6">
       <%= f.label "Topic Name" %>
@@ -12,5 +10,9 @@
   </div>
    <%= f.submit "Create Topic", class: "btn btn-medium btn-success" %>
 <% end %>
-<h3>List of Topics</h3>
-<%= render partial: 'shared/topics', collection: @topics %>
+<% if @topics.any? %>
+	<div class="row", style = "border-bottom: 3px solid black;">
+  		  <h3 style = "margin: 5px;"> All Topics </h3>
+   	</div>
+	<%= render partial: 'shared/topics', collection: @topics %>
+<% end %>

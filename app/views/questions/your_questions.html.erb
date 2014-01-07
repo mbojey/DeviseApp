@@ -2,11 +2,13 @@
 	</br>
 	</br>
 	</br>
-    <div class="row", style = "border-bottom: 3px solid black">
+    <div class="row", style = "padding: 5px;">
   		<%= link_to'Create a Question', '/questions/new', class: "btn btn-medium btn-success"  %>  
    	</div>
-	
 	<% if @questions.any? %>
+		<div class="row", style = "border-bottom: 3px solid black;">
+  		  <h3 style = "margin: 5px;"> Your Questions </h3>
+   		</div>
 		<%= render partial: 'shared/questions', collection: @questions %>
 	<% end %>
 <% end %>

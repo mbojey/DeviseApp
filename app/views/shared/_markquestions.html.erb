@@ -1,48 +1,22 @@
 <body>
 	<% if markquestions.grade == "Review Pending" %>
-		<div class = "row">
-			<div class = "col-mid-2">
-			<h3>Question</h3>
-				<%=markquestions.qtext.html_safe%>
-			</div>
-			<div class = "col-mid-2">
-				<% if markquestions.exam %>
-					Question chosen for exams
+		<div class = "row" style = "border-bottom: 1px solid black; padding: 5px;">
+			<div class = "col-md-2">
+				<% @user = User.find_by(:id => markquestions.user_id) %>
+				Submitted by: <%= @user.lname %>, <%= @user.fname %> 
+				<% if !@user.assistant && !@user.instructor %>
+					Student Number: <%= @user.studentnumber %>
 				<% end %>
 			</div>
-			<div class = "col-mid-2">
-					<% @user = User.find_by(:id => markquestions.user_id) %>
-					Submitted by: <%= @user.username %>
-					<% if !@user.assistant && !@user.instructor %>
-						Student Number: <%= @user.studentnumber %>
-					<% end %>
+			<div class = "col-md-1">
+				<%= @user.lab %>
+			</div>
+			<div class = "col-md-2">
+				<%= Topic.find_by(:topic_id => markquestions.topic_id).name %>
+			</div>
+			<div class = "col-md-1">
+				<%= link_to "Mark", {controller: "questions", action: "mark", id: markquestions.id}, class: "btn btn-mdall btn-success" %>
 			</div>
 		</div>
-		<div class = "row">
-			<div class = "col-md-2 col-md-offset-1" <% if markquestions.answer ==1 %> style = "border: 2px solid green" <% end %>>
-				<h3>Answer1</h3>
-				<%=markquestions.a1text.html_safe%>
-			</div>
-			<div class = "col-md-2" <% if markquestions.answer == 2 %> style = "border: 2px solid green" <% end %>>
-				<h3>Answer2</h3>
-				<%=markquestions.a2text.html_safe%>
-			</div>
-			<div class = "col-md-2" <% if markquestions.answer == 3 %> style = "border: 2px solid green" <% end %>>
-				<h3>Answer3</h3>
-				<%=markquestions.a3text.html_safe%>
-			</div>
-			<div class = "col-md-2" <% if markquestions.answer == 4 %> style = "border: 2px solid green" <% end %>>
-				<h3>Answer4</h3>
-				<%=markquestions.a4text.html_safe%>
-			</div>
-			<div class = "col-md-2" <% if markquestions.answer == 5 %> style = "border: 2px solid green" <% end %>>
-				<h3>Answer5</h3>
-				<%=markquestions.a5text.html_safe%>
-			</div>
-		</div>
-		</br>
-		<%= link_to "Correct", {controller: "questions", action: "correct", id: markquestions.id}, class: "btn btn-mdall btn-success" %>
-		<%= link_to "Incorrect", {controller: "questions", action: "incorrect", id: markquestions.id}, class: "btn btn-mdall btn-danger" %>
-		<%= link_to "Needs Changes", {controller: "questions", action: "changes", id: markquestions.id}, class: "btn btn-mdall btn-primary" %>
 	<% end %>
 </body>

@@ -12,6 +12,16 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def view
+    @user = current_user
+    @question = Question.find_by(id: params[:id])
+  end
+
+  def mark
+    @user = current_user
+    @question = Question.find_by(id: params[:id])
+  end
+
   def incorrect
     @user = current_user
     if @user.assistant || @user.instructor

@@ -1,46 +1,49 @@
-<body>	
-	<% @practice = Question.find_by(:question_id => practices.question_id) %>
-	<div class = "row">
-		<div class = "col-mid-2">
-		<h3>Question</h3>
-			<%=@practice.qtext.html_safe%>
+	
+<% @question = Question.find_by(:question_id => practices.question_id) %>
+<div class = "row" style = "padding: 8px;">
+	<%= @question.qtext.html_safe %>
+</div>
+<%= simple_form_for @current, :url => { :action => "submit" } do |f| %>
+	<div class = "row" style = "padding: 8px;">
+		<div class = "col-md-1">
+			<p style = "margin: 0px;"> <%= f.radio_button :answer, 1  %>   a)</p>
 		</div>
-		<div class = "col-mid-2">
-			<% if @practice.exam %>
-				Question chosen for exams
-			<% end %>
+		<div class = "col-md-11">
+			<%= @question.a1text.html_safe %>
 		</div>
 	</div>
-	<%= simple_form_for @current, :url => { :action => "submit" } do |f| %>
-		<div class = "row">
-			<div class = "col-md-2 col-md-offset-1">
-				<h3>Answer1</h3>
-				<%=@practice.a1text.html_safe%>
-				<%= f.radio_button :answer, 1  %>
-			</div>
-			<div class = "col-md-2">
-				<h3>Answer2</h3>
-				<%=@practice.a2text.html_safe%>
-				<%= f.radio_button :answer, 2  %>
-			</div>
-			<div class = "col-md-2">
-				<h3>Answer3</h3>
-				<%=@practice.a3text.html_safe%>
-				<%= f.radio_button :answer, 3  %>
-			</div>
-			<div class = "col-md-2">
-				<h3>Answer4</h3>
-				<%=@practice.a4text.html_safe%>
-				<%= f.radio_button :answer, 4  %>
-			</div>
-			<div class = "col-md-2">
-				<h3>Answer5</h3>
-				<%=@practice.a5text.html_safe%>
-				<%= f.radio_button :answer, 5  %>
-			</div>
+	<div class = "row" style = "padding: 8px;">
+		<div class = "col-md-1">
+			<p style = "margin: 0px;"> <%= f.radio_button :answer, 2  %>   b)</p>
 		</div>
-		<%= f.hidden_field :practice_id, value: practices.practice_id %>
-		<%= f.submit "Submit", class: "btn btn-medium btn-success" %>
-	<% end %>
-	</br>
-</body>
+		<div class = "col-md-11">
+			<%= @question.a2text.html_safe %>
+		</div>
+	</div>
+	<div class = "row" style = "padding: 8px;">
+		<div class = "col-md-1">
+			<p style = "margin: 0px;"> <%= f.radio_button :answer, 3  %>   c)</p>
+		</div>
+		<div class = "col-md-11">
+			<%= @question.a3text.html_safe %>
+		</div>
+	</div>
+	<div class = "row" style = "padding: 8px;">
+		<div class = "col-md-1">
+			<p style = "margin: 0px;"> <%= f.radio_button :answer, 4  %>   d)</p>
+		</div>
+		<div class = "col-md-11">
+			<%= @question.a4text.html_safe %>
+		</div>
+	</div>
+	<div class = "row" style = "padding: 8px;">
+		<div class = "col-md-1">
+			<p style = "margin: 0px;"> <%= f.radio_button :answer, 5  %>   e)</p>
+		</div>
+		<div class = "col-md-11">
+			<%= @question.a5text.html_safe %>
+		</div>
+	</div>
+	<%= f.hidden_field :practice_id, value: practices.practice_id %>
+	<%= f.submit "Submit", class: "btn btn-medium btn-success" %>
+<% end %>

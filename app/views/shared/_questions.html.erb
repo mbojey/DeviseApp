@@ -1,44 +1,43 @@
 <% if questions.visible %>
-	<div class = "row">
-		<div class = "col-mid-2">
-		<h3>Question</h3>
+	<div class = "row" style = "border-bottom: 1px solid black; padding: 5px;">
+		<div class = "col-md-7">
 			<%=questions.qtext.html_safe%>
 		</div>
-		<div class = "col-mid-2">
+		<div class = "col-md-1">
+			<%= link_to "View", {controller: "questions", action: "view", id: questions.id}, class: "btn btn-mdall btn-success" %>
+		</div>
+		<%if !questions.submitted %>
+			<div class = "col-md-1">
+				<%= link_to "Submit", {controller: "questions", action: "submit", id: questions.id}, class: "btn btn-mdall btn-success" %>
+			</div>
+			<div class = "col-md-1">
+				<%= link_to "Delete", {controller: "questions", action: "hide", id: questions.id}, class: "btn btn-mdall btn-danger" %>
+			</div>
+			<div class = "col-md-1">
+				<%= link_to "Edit", {controller: "questions", action: "edit", id: questions.id}, class: "btn btn-mdall btn-primary" %>
+			</div>
+		<% else %>
+			<% if !(questions.grade == "Review Pending") %>
+				<div class = "col-md-1">
+					<%= link_to "Edit", {controller: "questions", action: "edit", id: questions.id}, class: "btn btn-mdall btn-primary" %>
+				</div>
+				<div class = "col-md-1">
+					<%= link_to "Resubmit", {controller: "questions", action: "submit", id: questions.id}, class: "btn btn-mdall btn-success" %>
+				</div>
+				<div class = "col-md-2">
+					<%=questions.grade.html_safe %>
+				</div>
+			<% else %>
+				<div class = "col-md-3">
+					<%=questions.grade.html_safe %>
+				</div>
+			<% end %>
+		<% end %>
+		<div class = "col-md-1">
 			<% if questions.exam %>
 				Question chosen for exams
 			<% end %>
 		</div>
 	</div>
-	<div class = "row">
-		<div class = "col-md-2 col-md-offset-1" <% if questions.answer ==1 %> style = "border: 2px solid green" <% end %>>
-			<h3>Answer1</h3>
-			<%=questions.a1text.html_safe%>
-		</div>
-		<div class = "col-md-2" <% if questions.answer == 2 %> style = "border: 2px solid green" <% end %>>
-			<h3>Answer2</h3>
-			<%=questions.a2text.html_safe%>
-		</div>
-		<div class = "col-md-2" <% if questions.answer == 3 %> style = "border: 2px solid green" <% end %>>
-			<h3>Answer3</h3>
-			<%=questions.a3text.html_safe%>
-		</div>
-		<div class = "col-md-2" <% if questions.answer == 4 %> style = "border: 2px solid green" <% end %>>
-			<h3>Answer4</h3>
-			<%=questions.a4text.html_safe%>
-		</div>
-		<div class = "col-md-2" <% if questions.answer == 5 %> style = "border: 2px solid green" <% end %>>
-			<h3>Answer5</h3>
-			<%=questions.a5text.html_safe%>
-		</div>
-	</div>
-	</br>
-	<%if !questions.submitted %>
-		<%= link_to "Submit this question", {controller: "questions", action: "submit", id: questions.id}, class: "btn btn-mdall btn-success" %>
-		<%= link_to "Delete this question", {controller: "questions", action: "hide", id: questions.id}, class: "btn btn-mdall btn-danger" %>
-		<%= link_to "Edit this question", {controller: "questions", action: "edit", id: questions.id}, class: "btn btn-mdall btn-primary" %>
-	<% else %>
-		<%=questions.grade %>
-	<% end %>
 <% end %>
 

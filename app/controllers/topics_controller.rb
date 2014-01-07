@@ -9,7 +9,11 @@ class TopicsController < ApplicationController
 		@user = current_user
 		if @user.assistant || @user.instructor
 			@topic = Topic.create(topic_params)
-			@topic.save
+			if @topic.save
+				flash[:success] = "Topic created"
+			else
+				flash[:error] = "Please fill in the field"
+			end
 		end
 		redirect_to "/topics"
 	end

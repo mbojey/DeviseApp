@@ -24,8 +24,6 @@ class PracticesController < ApplicationController
 		@game.number = @game.number + 1
 		@game.save
 		@practice.save
-		puts "ANSWER IS " + @answer.to_s
-		puts "IF SAYS THAT " + (Question.find_by(:question_id => @practice.question_id).answer == @answer).to_s
 		if Question.find_by(:question_id => @practice.question_id).answer == @answer
 			@game.correct = @game.correct + 1
 			flash[:success] = "Correct"
@@ -47,24 +45,23 @@ class PracticesController < ApplicationController
 			if @game.topic_id == 0
 				@questions = Question.all.to_a
 			else
-				@questions = Question.where(topic_id: @game.topic_id).to_a
+				@questions = Question.where(topic_id: @game.topic_id)
 			end
 			@i = 0
-			while @practice.nil?  && @i < @questions.size do 
+			@questions.each do |q| 
 				if (Practice.where(:game_id => @game.game_id, :question_id => 
-					@questions[@i].question_id, :correct => true).nil? ||
+					q.question_id, :correct => true).nil? ||
 					Practice.where(:game_id => @game.game_id, :question_id => 
-						@questions[@i].question_id, :correct => true).empty?)
-					if @questions[@i].submitted == true
+						q.question_id, :correct => true).empty?)
+					if q.submitted == true
 						@practice = Practice.create
 						@practice.game_id = @game.game_id
 						@practice.user_id = @user.user_id
-						@practice.question_id = @questions[@i].question_id
-						@practice.topic_id = @questions[@i].topic_id
+						@practice.question_id = q.question_id
+						@practice.topic_id = q.topic_id
 						@practice.save
+						break
 					end
-				else
-					@i = @i + 1 
 				end
 			end
 			if !@practice.nil?
