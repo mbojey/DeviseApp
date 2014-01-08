@@ -91,6 +91,7 @@ class QuestionsController < ApplicationController
     @question = Question.find_by(id: params[:id])
     @question.update_attribute(:submitted, true)
     @question.update_attribute(:grade, "Review Pending")
+    @question.update_attribute(:date_submitted, DateTime.now)
     redirect_to "/your_questions"
   end
 
@@ -158,6 +159,7 @@ class QuestionsController < ApplicationController
       if @question.save
         if @question.submitted
           @question.grade = "Review Pending"
+          @question.date_submitted = DateTime.now
           @question.save
 	        flash[:success] = "Question submitted!"
         else

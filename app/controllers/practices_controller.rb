@@ -50,9 +50,9 @@ class PracticesController < ApplicationController
 			@i = 0
 			@questions.each do |q| 
 				if (Practice.where(:game_id => @game.game_id, :question_id => 
-					q.question_id, :correct => true).nil? ||
+					q.question_id).nil? ||
 					Practice.where(:game_id => @game.game_id, :question_id => 
-						q.question_id, :correct => true).empty?)
+						q.question_id).empty?)
 					if q.submitted == true
 						@practice = Practice.create
 						@practice.game_id = @game.game_id

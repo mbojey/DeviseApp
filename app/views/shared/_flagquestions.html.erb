@@ -10,8 +10,12 @@
 		<div class = "col-md-1">
 			<%= @user.lab %>
 		</div>
-		<div class = "col-md-2">
-		</div>
+		<div class = "col-md-1">
+				<%= Topic.find_by(:topic_id => flagquestions.topic_id).name %>
+			</div>
+			<div class = "col-md-3">
+				<%= flagquestions.date_submitted.strftime("Submitted on: %a %b %-d at %I:%M%p") %>
+			</div>
 		<div class = "col-md-1">
 			<%= link_to "View", {controller: "questions", action: "flagview", id: flagquestions.id}, class: "btn btn-mdall btn-success" %>
 		</div>

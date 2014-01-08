@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140108060452) do
+ActiveRecord::Schema.define(version: 20140108061859) do
 
   create_table "games", force: true do |t|
     t.integer "game_id",  default: 0, null: false
@@ -34,21 +34,22 @@ ActiveRecord::Schema.define(version: 20140108060452) do
   end
 
   create_table "questions", force: true do |t|
-    t.text    "qtext",       limit: 255
-    t.text    "a1text",      limit: 255
-    t.text    "a2text",      limit: 255
-    t.text    "a3text",      limit: 255
-    t.text    "a4text",      limit: 255
-    t.text    "a5text",      limit: 255
-    t.integer "answer"
-    t.integer "user_id",                 default: 0,     null: false
-    t.integer "question_id",             default: 0,     null: false
-    t.integer "topic_id",                default: 0,     null: false
-    t.boolean "submitted",               default: false, null: false
-    t.text    "grade",       limit: 255, default: "",    null: false
-    t.boolean "visible",                 default: true,  null: false
-    t.boolean "exam",                    default: false, null: false
-    t.string  "lab"
+    t.text     "qtext",          limit: 255
+    t.text     "a1text",         limit: 255
+    t.text     "a2text",         limit: 255
+    t.text     "a3text",         limit: 255
+    t.text     "a4text",         limit: 255
+    t.text     "a5text",         limit: 255
+    t.integer  "answer"
+    t.integer  "user_id",                    default: 0,     null: false
+    t.integer  "question_id",                default: 0,     null: false
+    t.integer  "topic_id",                   default: 0,     null: false
+    t.boolean  "submitted",                  default: false, null: false
+    t.text     "grade",          limit: 255, default: "",    null: false
+    t.boolean  "visible",                    default: true,  null: false
+    t.boolean  "exam",                       default: false, null: false
+    t.string   "lab"
+    t.datetime "date_submitted"
   end
 
   create_table "results", force: true do |t|

@@ -11,8 +11,11 @@
 			<div class = "col-md-1">
 				<%= @user.lab %>
 			</div>
-			<div class = "col-md-2">
+			<div class = "col-md-1">
 				<%= Topic.find_by(:topic_id => markquestions.topic_id).name %>
+			</div>
+			<div class = "col-md-3">
+				<%= markquestions.date_submitted.strftime("Submitted on: %a %b %-d at %I:%M%p") %>
 			</div>
 			<div class = "col-md-1">
 				<%= link_to "Mark", {controller: "questions", action: "mark", id: markquestions.id}, class: "btn btn-mdall btn-success" %>
