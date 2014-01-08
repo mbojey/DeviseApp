@@ -3,8 +3,8 @@
 <body class = "portfolio">
 	<h1>Welcome</h1>
 	<% if user_signed_in? %>
-		<h5> So far you have done <%= @count %> games </h5>
-		<h5> Your high score is <%= @percent %>% on <%= @number %> questions </h5>
+		<p> So far you have done <%= @count %> game<% if !(@count== 1) %>s<% end %>  </p>
+		<p> Your high score is <%= @percent %>% on <%= @number %> question<% if !(@number== 1) %>s<% end %> </p>
 	<% end %>
 </body>
 </html>

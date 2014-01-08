@@ -53,7 +53,7 @@ class PracticesController < ApplicationController
 					q.question_id).nil? ||
 					Practice.where(:game_id => @game.game_id, :question_id => 
 						q.question_id).empty?)
-					if q.submitted == true
+					if (q.submitted == true && q.grade == "Correct")
 						@practice = Practice.create
 						@practice.game_id = @game.game_id
 						@practice.user_id = @user.user_id
