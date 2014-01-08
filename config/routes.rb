@@ -24,7 +24,9 @@ match '/remove', to: 'topics#remove', via: 'get'
 match '/study/', to: 'practices#use', via: 'get'
 match '/answer', to: 'practices#submit', via: 'post'
 match '/view', to: 'questions#view', via:'get'
+match '/flagview', to: 'questions#flagview', via:'get'
 match '/mark', to: 'questions#mark', via:'get'
+match '/terms', to: 'static_pages#terms', via:'get'
 
 mount Ckeditor::Engine => '/ckeditor'
 

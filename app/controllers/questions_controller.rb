@@ -22,6 +22,11 @@ class QuestionsController < ApplicationController
     @question = Question.find_by(id: params[:id])
   end
 
+  def flagview
+    @user = current_user
+    @question = Question.find_by(id: params[:id])
+  end
+
   def incorrect
     @user = current_user
     if @user.assistant || @user.instructor
@@ -149,8 +154,15 @@ class QuestionsController < ApplicationController
       elsif @answer[12, @answer.length - 14] == "e"
         @question.answer = 5
       end
+      @question.submitted = !(params[:submitted].to_s.include? "Create")
       if @question.save
-	      flash[:success] = "Question created!"
+        if @question.submitted
+          @question.grade = "Review Pending"
+          @question.save
+	        flash[:success] = "Question submitted!"
+        else
+          flash[:success] = "Question created!"
+        end
 	      redirect_to "/your_questions"
 	    else
 	      flash[:error] = "Please fill in all required fields."
@@ -162,7 +174,7 @@ class QuestionsController < ApplicationController
    private
     
     def question_params
-      params.require(:question).permit(:qtext, :a1text, :a2text, :a3text, :a4text, :a5text, :topic_id)
+      params.require(:question).permit(:qtext, :a1text, :a2text, :a3text, :a4text, :a5text, :topic_id, :submitted)
     end
 
     def answer_params

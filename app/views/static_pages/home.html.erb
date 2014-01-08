@@ -1,8 +1,11 @@
 
 <html>
 <body class = "portfolio">
-</br>
 	<h1>Welcome</h1>
+	<% if user_signed_in? %>
+		<h5> So far you have done <%= @count %> games </h5>
+		<h5> Your high score is <%= @percent %>% on <%= @number %> questions </h5>
+	<% end %>
 </body>
 </html>
 

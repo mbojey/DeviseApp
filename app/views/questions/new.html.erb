@@ -1,6 +1,4 @@
-
 <%= simple_form_for @question, :url => { :action => "create" } do |f| %>
-
   <p>All multiple choice questions must have one question and 5 possible responses. If you include Java code in your question, use the "Courier New" font to make it clear that it is code.</p>
   <div class = "row">
     <div class = "col-sm-12">
@@ -41,6 +39,7 @@
     </div>
   </div>
   <br/>
-  <%= f.submit "Create Question", class: "btn btn-medium btn-success" %>
+  <%= f.submit "Create without submitting", name: "submitted", value: "Create without submitting", class: "btn btn-medium btn-info" %>
+  <%= f.submit "Submit", name: "submitted", value: "Submit", class: "btn btn-medium btn-success" %>
 <% end %>
 

@@ -4,7 +4,7 @@
 			<%=questions.qtext.html_safe%>
 		</div>
 		<div class = "col-md-1">
-			<%= link_to "View", {controller: "questions", action: "view", id: questions.id}, class: "btn btn-mdall btn-success" %>
+			<%= link_to "View", {controller: "questions", action: "view", id: questions.id}, class: "btn btn-mdall btn-info" %>
 		</div>
 		<%if !questions.submitted %>
 			<div class = "col-md-1">
@@ -17,7 +17,7 @@
 				<%= link_to "Edit", {controller: "questions", action: "edit", id: questions.id}, class: "btn btn-mdall btn-primary" %>
 			</div>
 		<% else %>
-			<% if !(questions.grade == "Review Pending") %>
+			<% if !(questions.grade == "Review Pending" || questions.grade == "Correct" || questions.grade == "Incorrect") %>
 				<div class = "col-md-1">
 					<%= link_to "Edit", {controller: "questions", action: "edit", id: questions.id}, class: "btn btn-mdall btn-primary" %>
 				</div>
@@ -25,7 +25,7 @@
 					<%= link_to "Resubmit", {controller: "questions", action: "submit", id: questions.id}, class: "btn btn-mdall btn-success" %>
 				</div>
 				<div class = "col-md-2">
-					<%=questions.grade.html_safe %>
+					TA comment: <%=questions.grade.html_safe %>
 				</div>
 			<% else %>
 				<div class = "col-md-3">

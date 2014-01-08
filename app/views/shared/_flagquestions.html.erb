@@ -1,43 +1,27 @@
 <% if flagquestions.visible %>
-	<div class = "row">
-		<div class = "col-mid-2">
-		<h3>Question</h3>
-			<%=flagquestions.qtext.html_safe%>
+	<div class = "row" style = "border-bottom: 1px solid black; padding: 5px;">
+		<div class = "col-md-2">
+			<% @user = User.find_by(:id => flagquestions.user_id) %>
+			Submitted by: <%= @user.lname %>, <%= @user.fname %> 
+			<% if !@user.assistant && !@user.instructor %>
+				Student Number: <%= @user.studentnumber %>
+			<% end %>
 		</div>
-		<div class = "col-mid-2">
-			<% if flagquestions.exam %>
-				Question chosen for exams
+		<div class = "col-md-1">
+			<%= @user.lab %>
+		</div>
+		<div class = "col-md-2">
+		</div>
+		<div class = "col-md-1">
+			<%= link_to "View", {controller: "questions", action: "flagview", id: flagquestions.id}, class: "btn btn-mdall btn-success" %>
+		</div>
+		<div class = "col-md-3">
+			<% if flagquestions.grade == "Review Pending" || flagquestions.grade == "Correct" || flagquestions.grade == "Incorrect" %>
+				<%=flagquestions.grade.html_safe %>
+			<% else %>
+				<p> TA comment: <%=flagquestions.grade.html_safe %> </p>
 			<% end %>
 		</div>
 	</div>
-	<div class = "row">
-		<div class = "col-md-2 col-md-offset-1" <% if flagquestions.answer ==1 %> style = "border: 2px solid green" <% end %>>
-			<h3>Answer1</h3>
-			<%=flagquestions.a1text.html_safe%>
-		</div>
-		<div class = "col-md-2" <% if flagquestions.answer == 2 %> style = "border: 2px solid green" <% end %>>
-			<h3>Answer2</h3>
-			<%=flagquestions.a2text.html_safe%>
-		</div>
-		<div class = "col-md-2" <% if flagquestions.answer == 3 %> style = "border: 2px solid green" <% end %>>
-			<h3>Answer3</h3>
-			<%=flagquestions.a3text.html_safe%>
-		</div>
-		<div class = "col-md-2" <% if flagquestions.answer == 4 %> style = "border: 2px solid green" <% end %>>
-			<h3>Answer4</h3>
-			<%=flagquestions.a4text.html_safe%>
-		</div>
-		<div class = "col-md-2" <% if flagquestions.answer == 5 %> style = "border: 2px solid green" <% end %>>
-			<h3>Answer5</h3>
-			<%=flagquestions.a5text.html_safe%>
-		</div>
-	</div>
-	</br>
-	<%=flagquestions.grade.html_safe %></br>
-	<% if !flagquestions.exam %>
-		<%= link_to "Flag this question for exam", {controller: "questions", action: "flag", id: flagquestions.id}, class: "btn btn-mdall btn-success" %>
-	<% else %>
-		<%= link_to "Unflag this question for exam", {controller: "questions", action: "unflag", id: flagquestions.id}, class: "btn btn-mdall btn-danger" %>
-	<% end %> 	
 <% end %>
 

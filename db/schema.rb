@@ -11,7 +11,55 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131008164900) do
+ActiveRecord::Schema.define(version: 20140108060452) do
+
+  create_table "games", force: true do |t|
+    t.integer "game_id",  default: 0, null: false
+    t.integer "user_id",  default: 0, null: false
+    t.integer "topic_id", default: 0, null: false
+    t.integer "number",   default: 0, null: false
+    t.integer "correct",  default: 0, null: false
+    t.string  "name"
+  end
+
+  create_table "practices", force: true do |t|
+    t.integer "game_id",     default: 0,     null: false
+    t.integer "practice_id", default: 0,     null: false
+    t.integer "user_id",     default: 0,     null: false
+    t.integer "question_id", default: 0,     null: false
+    t.integer "topic_id",    default: 0,     null: false
+    t.integer "attempts",    default: 0,     null: false
+    t.integer "answer"
+    t.boolean "correct",     default: false, null: false
+  end
+
+  create_table "questions", force: true do |t|
+    t.text    "qtext",       limit: 255
+    t.text    "a1text",      limit: 255
+    t.text    "a2text",      limit: 255
+    t.text    "a3text",      limit: 255
+    t.text    "a4text",      limit: 255
+    t.text    "a5text",      limit: 255
+    t.integer "answer"
+    t.integer "user_id",                 default: 0,     null: false
+    t.integer "question_id",             default: 0,     null: false
+    t.integer "topic_id",                default: 0,     null: false
+    t.boolean "submitted",               default: false, null: false
+    t.text    "grade",       limit: 255, default: "",    null: false
+    t.boolean "visible",                 default: true,  null: false
+    t.boolean "exam",                    default: false, null: false
+    t.string  "lab"
+  end
+
+  create_table "results", force: true do |t|
+    t.string "name"
+    t.string "lab"
+  end
+
+  create_table "topics", force: true do |t|
+    t.string  "name"
+    t.integer "topic_id", default: 0, null: false
+  end
 
   create_table "users", force: true do |t|
     t.string   "username"
@@ -36,55 +84,6 @@ ActiveRecord::Schema.define(version: 20131008164900) do
     t.string   "lname"
     t.string   "lab"
     t.integer  "studentnumber"
-  end
-
-  create_table "questions", force: true do |t|
-        t.string "qtext"
-        t.string "a1text"
-        t.string "a2text"
-        t.string "a3text"
-        t.string "a4text"
-        t.string "a5text"
-        t.integer "answer"
-        t.integer "user_id",                default: 0,     null: false
-        t.integer "question_id",            default: 0,     null: false
-        t.integer "topic_id",               default: 0,     null: false
-        t.boolean "submitted",              default: false, null: false
-        t.string  "grade",                  default: "",    null: false
-        t.boolean "visible",                default: true,  null: false
-        t.boolean "exam",                   default: false, null: false
-        t.string  "lab"
-  end
-
-  create_table "topics", force: true do |t|
-        t.string "name"
-        t.integer "topic_id",                default: 0,     null: false
-  end
-
-  create_table "results", force: true do |t|
-        t.string "name"
-        t.string "lab"
-  end
-
-  create_table "practices", force: true do |t|
-        t.integer "game_id",                default: 0,     null: false
-        t.integer "practice_id",            default: 0,     null: false
-        t.integer "user_id",                default: 0,     null: false
-        t.integer "question_id",            default: 0,     null: false
-        t.integer "topic_id",               default: 0,     null: false
-        t.integer "attempts",               default: 0,     null: false
-        t.integer "answer"
-        t.boolean "correct",                default: false, null: false
-  end
-
-  create_table "games", force: true do |t|
-        t.integer "game_id",                default: 0,     null: false
-        t.integer "user_id",                default: 0,     null: false
-        t.integer "topic_id",               default: 0,     null: false
-        t.integer "number",                 default: 0,     null: false
-        t.integer "correct",                default: 0,     null: false
-        t.string "name"
-
   end
 
 end

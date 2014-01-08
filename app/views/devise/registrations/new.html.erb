@@ -15,7 +15,7 @@
 
 <h2>Sign up</h2>
 
-<%= form_for(@user, :url => { :action => "create" }) do |f| %>
+<%= simple_form_for(@user, :url => { :action => "create" }) do |f| %>
   <%= devise_error_messages! %>
   
   <div><%= f.label "Email" %><br />
@@ -36,8 +36,8 @@
   <div><%= f.label "Last Name" %><br />
   <%= f.text_field :lname %></div>
 
-  <div><%= f.label "Lab Section e.g. L01" %><br />
-  <%= f.text_field :lab, :onkeyup => "CheckMaxlength(this);", :maxlength => 3%></div>
+  <div>
+  <%= f.input :lab, :label => "Lab Section", :required => false, :collection => @labs%></div>
 
   <div><%= f.label "Student Number" %><br />
   <%= f.text_field :studentnumber, :onkeyup => "CheckMaxlength(this);", :maxlength => 8%></div>

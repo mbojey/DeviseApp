@@ -18,5 +18,31 @@
 				<%= link_to "Mark", {controller: "questions", action: "mark", id: markquestions.id}, class: "btn btn-mdall btn-success" %>
 			</div>
 		</div>
+	<% else %>
+		<div class = "row" style = "border-bottom: 1px solid black; padding: 5px;">
+			<div class = "col-md-2">
+				<% @user = User.find_by(:id => markquestions.user_id) %>
+				Submitted by: <%= @user.lname %>, <%= @user.fname %> 
+				<% if !@user.assistant && !@user.instructor %>
+					Student Number: <%= @user.studentnumber %>
+				<% end %>
+			</div>
+			<div class = "col-md-1">
+				<%= @user.lab %>
+			</div>
+			<div class = "col-md-2">
+				<%= Topic.find_by(:topic_id => markquestions.topic_id).name %>
+			</div>
+			<div class = "col-md-1">
+				<%= link_to "View", {controller: "questions", action: "view", id: markquestions.id}, class: "btn btn-mdall btn-info" %>
+			</div>
+			<div class = "col-md-4">
+				<% if !(markquestions.grade == "Correct" || markquestions.grade == "Incorrect") %>
+					TA comment: <%=markquestions.grade.html_safe %>
+				<% else %>
+					<%=markquestions.grade.html_safe %>
+				<% end %>
+			</div>
+		</div>
 	<% end %>
 </body>
