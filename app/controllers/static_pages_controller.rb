@@ -20,6 +20,9 @@ class StaticPagesController < ApplicationController
         end
       end
     end
+    @topics = Topic.all
+    @created = Question.all.count
+    @submitted = Question.where(submitted: true).count
   end
 
   def terms
@@ -27,4 +30,45 @@ class StaticPagesController < ApplicationController
       @user = current_user
     end
   end
+
+   def stats
+    if user_signed_in?
+      @user = current_user
+    end
+    @result = Result.new
+    @topic = Topic.all
+    @users = User.all
+    @lab = Array.new
+    @users.each do |u|
+      if !@lab.include?(u.lab)
+        @lab.push(u.lab)
+      end
+    end
+  end
+
+  def view
+    if user_signed_in?
+      @user = current_user
+    end
+    @result = Result.new(result_params)
+    @users = User.all
+    @lab = Array.new
+    @users.each do |u|
+      if !@lab.include?(u.lab)
+        @lab.push(u.lab)
+      end
+    end 
+    @users = User.where(lab: @result.lab)
+    if @result.name.empty?
+      @topics = Topic.all
+    else
+      @topics = Topic.find_by(name: @result.name)
+    end
+    @topic = Topic.all
+  end
+
+  private
+    def result_params
+      params.require(:result).permit(:name, :lab)
+    end
 end

@@ -18,9 +18,17 @@ class PracticesController < ApplicationController
 	def submit
 		@practice = Practice.new(answer_params)
 		@answer = @practice.answer
+		@practice = Practice.new(start_params)
+		@start = @practice.starttime
 		@practice = Practice.find_by(id_params)
 		@game = Game.find_by(:game_id => @practice.game_id)
 		@practice.attempts = @practice.attempts + 1
+		@practice.starttime = @start
+		@practice.endtime = DateTime.now
+		puts  "END TIME IS " + @practice.endtime.to_s
+		puts  "Start TIME IS " + @practice.starttime.to_s
+		puts "totaltime shold be" + ((@practice.endtime-@practice.starttime)/1.second).to_i.to_s
+		@practice.totaltime = ((@practice.endtime-@practice.starttime)/1.second).to_i
 		@game.number = @game.number + 1
 		@game.save
 		@practice.save
@@ -78,6 +86,9 @@ class PracticesController < ApplicationController
 	end
 	def answer_params
 		params.require(:practice).permit(:answer)
+	end
+	def start_params
+		params.require(:practice).permit(:starttime)
 	end
 	def id_params
 		params.require(:practice).permit(:practice_id)

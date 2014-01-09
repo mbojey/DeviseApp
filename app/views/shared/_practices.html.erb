@@ -45,5 +45,6 @@
 		</div>
 	</div>
 	<%= f.hidden_field :practice_id, value: practices.practice_id %>
+	<%= f.hidden_field :starttime, value: DateTime.now %>
 	<%= f.submit "Submit", class: "btn btn-medium btn-success" %>
 <% end %>

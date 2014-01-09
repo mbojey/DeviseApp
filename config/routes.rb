@@ -27,7 +27,8 @@ match '/view', to: 'questions#view', via:'get'
 match '/flagview', to: 'questions#flagview', via:'get'
 match '/mark', to: 'questions#mark', via:'get'
 match '/terms', to: 'static_pages#terms', via:'get'
-
+match '/stats', to: 'static_pages#stats', via:'get'
+match '/view', to: 'static_pages#view', via:'post'
 mount Ckeditor::Engine => '/ckeditor'
 
 

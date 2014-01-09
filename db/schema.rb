@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140108061859) do
+ActiveRecord::Schema.define(version: 20140109025700) do
 
   create_table "games", force: true do |t|
     t.integer "game_id",  default: 0, null: false
@@ -31,6 +31,9 @@ ActiveRecord::Schema.define(version: 20140108061859) do
     t.integer "attempts",    default: 0,     null: false
     t.integer "answer"
     t.boolean "correct",     default: false, null: false
+    t.datetime    "starttime"
+    t.datetime    "endtime"
+    t.integer   "totaltime"
   end
 
   create_table "questions", force: true do |t|
