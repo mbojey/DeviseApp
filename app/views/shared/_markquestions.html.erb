@@ -23,6 +23,10 @@
 				<%= Topic.find_by(:topic_id => markquestions.topic_id).name %>
 			</div>
 			<div class = "col-md-2">
+				<% if markquestions.date_submitted.nil? %>
+					<% markquestions.date_submitted = (DateTime.now.to_time - 8.hours).to_datetime %>
+					<% markquestions.save %>
+				<% end %>
 				<%= markquestions.date_submitted.strftime("%a %b %-d at %I:%M%p") %>
 			</div>
 			<div class = "col-md-1">
@@ -53,6 +57,10 @@
 				<%= Topic.find_by(:topic_id => markquestions.topic_id).name %>
 			</div>
 			<div class = "col-md-2">
+				<% if markquestions.date_submitted.nil? %>
+					<% markquestions.date_submitted = (DateTime.now.to_time - 8.hours).to_datetime %>
+					<% markquestions.save %>
+				<% end %>
 				<%= markquestions.date_submitted.strftime("%a %b %-d at %I:%M%p") %>
 			</div>
 			<div class = "col-md-1">
