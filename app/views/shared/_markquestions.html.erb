@@ -3,6 +3,12 @@
 		<div class = "row" style = "border-bottom: 1px solid black; padding: 5px;">
 			<div class = "col-md-2">
 				<% @student = User.find_by(:id => markquestions.user_id) %>
+				<% if markquestions.lname.nil? %>
+					<% markquestions.lname = @student.lname %>
+					<% markquestions.fname = @student.fname %>
+					<% markquestions.studentnumber = @student.studentnumber %>
+					<% markquestions.save %>
+				<% end %>
 				<p><%= markquestions.lname %>, <%= markquestions.fname %></p>
 			</div>
 			<div class = "col-md-1">
@@ -27,6 +33,12 @@
 		<div class = "row" style = "border-bottom: 1px solid black; padding: 5px;">
 			<div class = "col-md-2">
 				<% @student = User.find_by(:id => markquestions.user_id) %>
+				<% if markquestions.lname.nil? %>
+					<% markquestions.lname = @student.lname %>
+					<% markquestions.fname = @student.fname %>
+					<% markquestions.studentnumber = @student.studentnumber %>
+					<% markquestions.save %>
+				<% end %>
 				<p><%= markquestions.lname %>, <%= markquestions.fname %></p>
 			</div>
 			<div class = "col-md-1">
