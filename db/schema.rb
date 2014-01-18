@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140109025700) do
+ActiveRecord::Schema.define(version: 20140118073948) do
 
   create_table "games", force: true do |t|
     t.integer "game_id",  default: 0, null: false
@@ -23,17 +23,17 @@ ActiveRecord::Schema.define(version: 20140109025700) do
   end
 
   create_table "practices", force: true do |t|
-    t.integer "game_id",     default: 0,     null: false
-    t.integer "practice_id", default: 0,     null: false
-    t.integer "user_id",     default: 0,     null: false
-    t.integer "question_id", default: 0,     null: false
-    t.integer "topic_id",    default: 0,     null: false
-    t.integer "attempts",    default: 0,     null: false
-    t.integer "answer"
-    t.boolean "correct",     default: false, null: false
-    t.datetime    "starttime"
-    t.datetime    "endtime"
-    t.integer   "totaltime"
+    t.integer  "game_id",     default: 0,     null: false
+    t.integer  "practice_id", default: 0,     null: false
+    t.integer  "user_id",     default: 0,     null: false
+    t.integer  "question_id", default: 0,     null: false
+    t.integer  "topic_id",    default: 0,     null: false
+    t.integer  "attempts",    default: 0,     null: false
+    t.integer  "answer"
+    t.boolean  "correct",     default: false, null: false
+    t.datetime "starttime"
+    t.datetime "endtime"
+    t.integer  "totaltime"
   end
 
   create_table "questions", force: true do |t|
@@ -53,6 +53,9 @@ ActiveRecord::Schema.define(version: 20140109025700) do
     t.boolean  "exam",                       default: false, null: false
     t.string   "lab"
     t.datetime "date_submitted"
+    t.string   "fname"
+    t.string   "lname"
+    t.integer  "studentnumber"
   end
 
   create_table "results", force: true do |t|

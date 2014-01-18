@@ -7,6 +7,7 @@ class QuestionsController < ApplicationController
       @question = Question.find_by(id: params[:id])
       @question.update_attribute(:grade, "Correct")
       @questions = Question.where(:topic_id => @question.topic_id, :lab => @question.lab)
+      @result = Result.create(:name => @question.topic_id, :lab => @question.lab)
     else
       @questions = nil
     end
@@ -33,6 +34,7 @@ class QuestionsController < ApplicationController
       @question = Question.find_by(id: params[:id])
       @question.update_attribute(:grade, "Incorrect")
       @questions = Question.where(:topic_id => @question.topic_id, :lab => @question.lab)
+      @result = Result.create(:name => @question.topic_id, :lab => @question.lab)
     else
       @questions = nil
     end
@@ -48,7 +50,10 @@ class QuestionsController < ApplicationController
     if @user.assistant || @user.instructor
       @question = Question.find_by(id_params)
       @question.update_attributes(grade_params)
+      @question.grade = "Marker comment: " + @question.grade.to_s
+      @question.save
       @questions = Question.where(:topic_id => @question.topic_id, :lab => @question.lab)
+      @result = Result.create(:name => @question.topic_id, :lab => @question.lab)
     else
       @questions = nil
     end

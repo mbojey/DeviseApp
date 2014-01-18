@@ -1,27 +1,34 @@
 <h3 style = "margin: 5px;"> Results </h3>
 <div class="row", style = "border-bottom: 3px solid black;">
 	<div class = "col-md-2">
-		<p style = "font-size: 18px; font-weight: bold;">Student Name
-			<%= link_to "Sort", :controller => "search", :action => "name", :topic_id => @result.name, :lab => @result.lab%></p>
+		<p style = "font-size: 18px; font-weight: bold;">
+			<%= link_to "Student Name", :controller => "search", :action => "name", :topic_id => @result.name, :lab => @result.lab%>
+		</p>
 	</div>
 	<div class = "col-md-1">
-		<p style = "font-size: 18px; font-weight: bold;">Number
-		<%= link_to "Sort", :controller => "search", :action => "number", :topic_id => @result.name, :lab => @result.lab%></p>
+		<p style = "font-size: 18px; font-weight: bold;">
+			<%= link_to "Number", :controller => "search", :action => "number", :topic_id => @result.name, :lab => @result.lab%>
+		</p>
 	</div>
 	<div class = "col-md-1">
-		<p style = "font-size: 18px; font-weight: bold;">Lab
-		<%= link_to "Sort", :controller => "search", :action => "lab", :topic_id => @result.name, :lab => @result.lab%></p>
+		<p style = "font-size: 18px; font-weight: bold;">
+			<%= link_to "Lab", :controller => "search", :action => "lab", :topic_id => @result.name, :lab => @result.lab%>
+		</p>
 	</div>
 	<div class = "col-md-1">
-		<p style = "font-size: 18px; font-weight: bold;">Topic
-		<%= link_to "Sort", :controller => "search", :action => "topic", :topic_id => @result.name, :lab => @result.lab%></p>
+		<p style = "font-size: 18px; font-weight: bold;">
+			<%= link_to "Topic", :controller => "search", :action => "topic", :topic_id => @result.name, :lab => @result.lab%>
+		</p>
 	</div>
 	<div class = "col-md-2">
-		<p style = "font-size: 18px; font-weight: bold;">Submitted At
-		<%= link_to "Sort", :controller => "search", :action => "time", :topic_id => @result.name, :lab => @result.lab%></p>
+		<p style = "font-size: 18px; font-weight: bold;">
+			<%= link_to "Submitted At", :controller => "search", :action => "time", :topic_id => @result.name, :lab => @result.lab%>
+		</p>
 	</div>
 	<div class = "col-md-2 col-md-offset-2">
-		<p style = "font-size: 18px; font-weight: bold;">Current Mark</p>
+		<p style = "font-size: 18px; font-weight: bold;">
+			Current Mark
+		</p>
 	</div>
 </div>
 <% if @questions.any? %>

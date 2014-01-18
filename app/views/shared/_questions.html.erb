@@ -25,7 +25,7 @@
 					<%= link_to "Resubmit", {controller: "questions", action: "submit", id: questions.id}, class: "btn btn-mdall btn-success" %>
 				</div>
 				<div class = "col-md-2">
-					TA comment: <%=questions.grade.html_safe %>
+					<%=questions.grade.html_safe %>
 				</div>
 			<% else %>
 				<div class = "col-md-3">

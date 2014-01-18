@@ -23,7 +23,7 @@
 			<% if flagquestions.grade == "Review Pending" || flagquestions.grade == "Correct" || flagquestions.grade == "Incorrect" %>
 				<%=flagquestions.grade.html_safe %>
 			<% else %>
-				<p> TA comment: <%=flagquestions.grade.html_safe %> </p>
+				<p> <%=flagquestions.grade.html_safe %> </p>
 			<% end %>
 		</div>
 	</div>
