@@ -29,6 +29,14 @@ match '/mark', to: 'questions#mark', via:'get'
 match '/terms', to: 'static_pages#terms', via:'get'
 match '/stats', to: 'static_pages#stats', via:'get'
 match '/view', to: 'static_pages#view', via:'post'
+match '/name', to: 'search#name', via: 'get'
+match '/name', to: 'search#name', via: 'get'
+match '/number', to: 'search#number', via: 'get'
+match '/lab', to: 'search#lab', via: 'get'
+match '/topic', to: 'search#topic', via: 'get'
+match '/time', to: 'search#time', via: 'get'
+match '/grade', to: 'search#grade', via: 'get'
+
 mount Ckeditor::Engine => '/ckeditor'
 
 
