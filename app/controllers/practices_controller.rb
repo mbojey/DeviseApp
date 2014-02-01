@@ -10,7 +10,7 @@ class PracticesController < ApplicationController
 		@user = current_user
 		@game = Game.create
 		@game.user_id = @user.user_id
-		@game.topic_id = params[:name].to_i
+		@game.topic_id = topic_params.to_s[10, topic_params.to_s.length-12].to_i
 		@game.save
 		redirect_to :controller => "practices", :action => "use", :id => @game.game_id
 	end
@@ -86,6 +86,9 @@ class PracticesController < ApplicationController
 	end
 	def answer_params
 		params.require(:practice).permit(:answer)
+	end
+	def topic_params
+		params.require(:game).permit(:name)
 	end
 	def start_params
 		params.require(:practice).permit(:starttime)
