@@ -10,7 +10,7 @@ class PracticesController < ApplicationController
 		@user = current_user
 		@game = Game.create
 		@game.user_id = @user.user_id
-		@game.topic_id = params[:topic_id].to_i
+		@game.topic_id = params[:name].to_i
 		@game.save
 		redirect_to :controller => "practices", :action => "use", :id => @game.game_id
 	end
