@@ -52,10 +52,10 @@
 </div>
 <div class = "row" style = "padding: 5px;">
 	<div class = "col-md-3">
-		<% if !flagquestions.exam %>
-			<%= link_to "Flag this question for exam", {controller: "questions", action: "flag", id: flagquestions.id}, class: "btn btn-mdall btn-success" %>
+		<% if !@question.exam %>
+			<%= link_to "Flag this question for exam", {controller: "questions", action: "flag", id: @question.id}, class: "btn btn-mdall btn-success" %>
 		<% else %>
-			<%= link_to "Unflag this question for exam", {controller: "questions", action: "unflag", id: flagquestions.id}, class: "btn btn-mdall btn-danger" %>
+			<%= link_to "Unflag this question for exam", {controller: "questions", action: "unflag", id: @question.id}, class: "btn btn-mdall btn-danger" %>
 		<% end %>
 	</div>
 </div>
