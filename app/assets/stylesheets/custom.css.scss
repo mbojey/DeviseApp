@@ -32,6 +32,9 @@ html {
 body {
 
 }
+mybrand{
+  font-color:white;
+}
 
 section {
   overflow: auto;
@@ -344,12 +347,13 @@ body.portfolio{
   font-weight: bold;
   line-height: 1;
   &:hover {
-    color: white;
+    color: #54B5D6;
     text-decoration: none;
   }
 }
 #brand {
-  color: #FFFFFF;
+  color: white;
+  text-shadow: none;
   &:hover {
     color: white;
     text-decoration: none;
