@@ -11,6 +11,19 @@ class SearchController < ApplicationController
 				@lab.push(u.lab)
 			end
 		end
+		@fillnames = Question.all
+		@fillnames.each do |f|
+			@owner = User.find(f.user_id)
+			if f.fname.nil?
+				f.fname = @owner.fname
+			end
+			if f.lname.nil?
+				f.lname = @owner.lname
+			end
+			if f.studentnumber.nil?
+				f.studentnumber = @owner.studentnumber
+			end
+		end
 	end
 
 	def create
