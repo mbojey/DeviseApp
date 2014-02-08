@@ -1,5 +1,4 @@
 class QuestionsController < ApplicationController
-	
 
   def correct
     @user = current_user
@@ -176,6 +175,41 @@ class QuestionsController < ApplicationController
         redirect_to "/questions/new"
 	    end
 	  end
+  end
+
+  def name
+    @user = current_user
+    @questions = Question.all.order(lname: :asc, fname: :asc).paginate(page: params[:page])
+  end
+
+  def number
+    @user = current_user
+    @questions = Question.all.order(studentnumber: :asc).paginate(page: params[:page])
+  end
+
+  def lab
+    @user = current_user
+    @questions = Question.all.order(lab: :desc).paginate(page: params[:page])
+  end
+  
+  def topic
+    @user = current_user
+    @questions = Question.all.order(topic_id: :desc).paginate(page: params[:page])
+  end
+
+  def time
+    @user = current_user
+    @questions = Question.all.order(date_submitted: :desc).paginate(page: params[:page])
+  end
+
+  def flag
+    @user = current_user
+    @questions = Question.all.order(exam: :desc).paginate(page: params[:page])
+  end
+
+  def grade
+    @user = current_user
+    @questions = Question.all.order(grade: :asc).paginate(page: params[:page])
   end
 
    private

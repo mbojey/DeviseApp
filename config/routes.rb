@@ -36,6 +36,14 @@ match '/lab', to: 'search#lab', via: 'get'
 match '/topic', to: 'search#topic', via: 'get'
 match '/time', to: 'search#time', via: 'get'
 match '/grade', to: 'search#grade', via: 'get'
+match '/flagname', to: 'questions#name', via: 'get'
+match '/flagnumber', to: 'questions#number', via: 'get'
+match '/flaglab', to: 'questions#lab', via: 'get'
+match '/flagtopic', to: 'questions#topic', via: 'get'
+match '/flagtime', to: 'questions#time', via: 'get'
+match '/flaggrade', to: 'questions#grade', via: 'get'
+match '/flagexam', to: 'questions#exam', via: 'get'
+
 
 mount Ckeditor::Engine => '/ckeditor'
 
