@@ -66,7 +66,7 @@ class QuestionsController < ApplicationController
   def flag_questions
     @user = current_user
     if @user.instructor
-      @questions = Question.where(submitted: true)
+      @questions = Question.where(submitted: true).paginate(page: params[:page])  
     else
       @questions = nil
     end
