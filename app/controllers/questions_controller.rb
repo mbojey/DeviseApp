@@ -65,6 +65,13 @@ class QuestionsController < ApplicationController
 
   def flag_questions
     @user = current_user
+    $name = false
+    $number = false
+    $topic = false
+    $lab = false
+    $time = false
+    $flagged = false
+    $grade = false
     if @user.instructor
       @questions = Question.where(submitted: true).paginate(page: params[:page])  
     else
@@ -78,7 +85,23 @@ class QuestionsController < ApplicationController
       @question = Question.find_by(id: params[:id])
       @question.update_attribute(:exam, true)
     end
-    redirect_to "/flag_questions"
+    if $name
+      redirect_to '/flagname'
+    elsif $number
+      redirect_to '/flagnumber'
+    elsif $topic
+      redirect_to '/flagtopic'
+    elsif $lab
+      redirect_to '/flaglab'
+    elsif $flagged
+      redirect_to '/flagexam'
+    elsif $time
+      redirect_to '/flagtime'
+    elsif $grade
+      redirect_to '/flaggrade'
+    else
+      redirect_to '/flag_questions'
+    end
   end
 
    def unflag
@@ -87,7 +110,23 @@ class QuestionsController < ApplicationController
       @question = Question.find_by(id: params[:id])
       @question.update_attribute(:exam, false)
     end
-    redirect_to "/flag_questions"
+    if $name
+      redirect_to '/flagname'
+    elsif $number
+      redirect_to '/flagnumber'
+    elsif $topic
+      redirect_to '/flagtopic'
+    elsif $lab
+      redirect_to '/flaglab'
+    elsif $flagged
+      redirect_to '/flagexam'
+    elsif $time
+      redirect_to '/flagtime'
+    elsif $grade
+      redirect_to '/flaggrade'
+    else
+      redirect_to '/flag_questions'
+    end
   end
 
   def submit
@@ -180,36 +219,92 @@ class QuestionsController < ApplicationController
   def name
     @user = current_user
     @questions = Question.all.order(lname: :asc, fname: :asc).paginate(page: params[:page])
+    $name = false
+    $number = false
+    $topic = false
+    $lab = false
+    $time = false
+    $flagged = false
+    $grade = false
+    $name = true
   end
 
   def number
     @user = current_user
     @questions = Question.all.order(studentnumber: :asc).paginate(page: params[:page])
+    $name = false
+    $number = false
+    $topic = false
+    $lab = false
+    $time = false
+    $flagged = false
+    $grade = false
+    $number = true
   end
 
   def lab
     @user = current_user
     @questions = Question.all.order(lab: :desc).paginate(page: params[:page])
+    $name = false
+    $number = false
+    $topic = false
+    $lab = false
+    $time = false
+    $flagged = false
+    $grade = false
+    $lab = true
   end
   
   def topic
     @user = current_user
     @questions = Question.all.order(topic_id: :desc).paginate(page: params[:page])
+    $name = false
+    $number = false
+    $topic = false
+    $lab = false
+    $time = false
+    $flagged = false
+    $grade = false
+    $topic = true
   end
 
   def time
     @user = current_user
     @questions = Question.all.order(date_submitted: :desc).paginate(page: params[:page])
+    $name = false
+    $number = false
+    $topic = false
+    $lab = false
+    $time = false
+    $flagged = false
+    $grade = false
+    $time = true
   end
 
-  def flag
+  def flagged
     @user = current_user
     @questions = Question.all.order(exam: :desc).paginate(page: params[:page])
+    $name = false
+    $number = false
+    $topic = false
+    $lab = false
+    $time = false
+    $flagged = false
+    $grade = false
+    $flagged = true
   end
 
   def grade
     @user = current_user
     @questions = Question.all.order(grade: :asc).paginate(page: params[:page])
+    $name = false
+    $number = false
+    $topic = false
+    $lab = false
+    $time = false
+    $flagged = false
+    $grade = false
+    $grade = true
   end
 
    private
