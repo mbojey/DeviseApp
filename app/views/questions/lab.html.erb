@@ -33,4 +33,5 @@
 </div>
 <% if @questions.any? %>
 		<%= render partial: 'shared/flagquestions', collection: @questions %>
+		<%= will_paginate @questions %>
 <% end %>
