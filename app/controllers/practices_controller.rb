@@ -25,9 +25,6 @@ class PracticesController < ApplicationController
 		@practice.attempts = @practice.attempts + 1
 		@practice.starttime = @start
 		@practice.endtime = DateTime.now
-		puts  "END TIME IS " + @practice.endtime.to_s
-		puts  "Start TIME IS " + @practice.starttime.to_s
-		puts "totaltime shold be" + ((@practice.endtime-@practice.starttime)/1.second).to_i.to_s
 		@practice.totaltime = ((@practice.endtime-@practice.starttime)/1.second).to_i
 		@game.number = @game.number + 1
 		@game.save
@@ -41,8 +38,15 @@ class PracticesController < ApplicationController
 			redirect_to :controller => "practices", :action => "use", :id => @game.game_id
 		else
 			flash[:error] = "Incorrect"
-			redirect_to :controller => "practices", :action => "use", :id => @game.game_id
+			redirect_to :controller => "practices", :action => "incorrect", :gameid => @game.game_id, :questionid => Question.find_by(:question_id => @practice.question_id).id
 		end	
+	end
+
+	def incorrect
+		@user = current_user
+		@practice = nil
+		@game = Game.find(params[:gameid])
+		@question = Question.find(params[:questionid])
 	end
 
 	def use
