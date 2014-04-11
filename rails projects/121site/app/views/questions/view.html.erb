@@ -57,11 +57,18 @@
 			<% if @question.grade == "Review Pending" || @question.grade == "Correct" || @question.grade == "Incorrect" %>
 				<%=@question.grade.html_safe %>
 			<% else %>
-				<p> TA comment: <%=@question.grade.html_safe %> </p>
+				<p><%=@question.grade.html_safe %> </p>
 			<% end %>
 		</div>
 	<% end %>
 	<div class = "col-md-4">
 		This questions is in the topic: <%=Topic.find_by(:topic_id => @question.topic_id).name%>
 	</div>
+</div>
+<div class = "row">
+	<% if !($topic == "" || $lab == "") %>
+		<div class = "col-md-1">
+			<%= link_to "Back to Results", {controller: "questions", action: "return"}, class: "btn btn-mdall btn-success" %>
+		</div>
+	<% end %>
 </div>

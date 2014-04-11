@@ -44,6 +44,8 @@ match '/flagtime', to: 'questions#time', via: 'get'
 match '/flaggrade', to: 'questions#grade', via: 'get'
 match '/flagexam', to: 'questions#flagged', via: 'get'
 match '/wronganswer', to: 'practices#incorrect', via: 'get'
+match '/return', to: 'questions#return', via: 'get'
+match '/results', to: 'search#show', via: 'get'
 
 
 mount Ckeditor::Engine => '/ckeditor'

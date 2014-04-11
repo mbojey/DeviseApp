@@ -12,6 +12,19 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def return
+    @user = current_user
+    if ($topic.eql?("") && $lab.eql?(""))
+      @questions = Question.all.order(user_id: :desc)
+    elsif $topic.eql?("")
+      @questions = Question.where(:lab => $lab).order(user_id: :desc)
+    elsif $lab.eql?("")
+      @questions = Question.where(:topic_id => $topic).order(user_id: :desc)
+    else
+      @questions = Question.where(:topic_id => $topic, :lab => $lab).order(user_id: :desc)
+    end
+  end
+
   def view
     @user = current_user
     @question = Question.find_by(id: params[:id])
